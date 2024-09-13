@@ -1,6 +1,7 @@
 package jackperry2187.epitheca.data.generator;
 
 import jackperry2187.epitheca.Epitheca;
+import jackperry2187.epitheca.init.BlockInit;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
@@ -14,7 +15,7 @@ public class EpithecaModelProvider extends FabricModelProvider {
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
         Epitheca.LOGGER.info("Generating block state models...");
-        // TODO
+        BlockInit.SHROOMLIGHTS.forEach(blockStateModelGenerator::registerSimpleCubeAll);
         Epitheca.LOGGER.info("Block state models generated successfully!");
     }
 
