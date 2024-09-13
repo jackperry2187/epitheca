@@ -1,0 +1,44 @@
+{
+	"schemaVersion": 1,
+	"id": "epitheca",
+	"version": "${version}",
+	"name": "epitheca",
+	"description": "Epitheca is a mod that adds a variety of new variants of existing blocks and items.",
+	"authors": [
+		"jackperry2187"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "GNU-GPL-3.0",
+	"icon": "assets/epitheca/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"jackperry2187.epitheca.Epitheca"
+		],
+		"client": [
+			"jackperry2187.epitheca.EpithecaClient"
+		],
+		"fabric-datagen": [
+			"jackperry2187.epitheca.EpithecaDataGenerator"
+		]
+	},
+	"mixins": [
+		"epitheca.mixins.json",
+		{
+			"config": "epitheca.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.5",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

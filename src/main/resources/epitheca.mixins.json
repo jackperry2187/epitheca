@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "jackperry2187.epitheca.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"ExampleMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
