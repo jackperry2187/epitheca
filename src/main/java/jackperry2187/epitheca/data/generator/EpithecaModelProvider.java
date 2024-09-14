@@ -1,11 +1,12 @@
 package jackperry2187.epitheca.data.generator;
 
 import jackperry2187.epitheca.Epitheca;
-import jackperry2187.epitheca.init.BlockInit;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
+
+import static jackperry2187.epitheca.init.block.Shroomlight.SHROOMLIGHTS;
 
 public class EpithecaModelProvider extends FabricModelProvider {
     public EpithecaModelProvider(FabricDataOutput output) {
@@ -15,7 +16,7 @@ public class EpithecaModelProvider extends FabricModelProvider {
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
         Epitheca.LOGGER.info("Generating block state models...");
-        BlockInit.SHROOMLIGHTS.forEach(blockStateModelGenerator::registerSimpleCubeAll);
+        SHROOMLIGHTS.forEach(blockStateModelGenerator::registerSimpleCubeAll);
         Epitheca.LOGGER.info("Block state models generated successfully!");
     }
 

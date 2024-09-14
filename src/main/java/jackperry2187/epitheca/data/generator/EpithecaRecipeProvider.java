@@ -15,8 +15,8 @@ import net.minecraft.registry.RegistryWrapper;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-import static jackperry2187.epitheca.init.BlockInit.SHROOMLIGHTS;
-import static jackperry2187.epitheca.init.ItemInit.DYES;
+import static jackperry2187.epitheca.init.block.Shroomlight.SHROOMLIGHTS;
+import static jackperry2187.epitheca.init.item.Defaults.DYES;
 
 public class EpithecaRecipeProvider extends FabricRecipeProvider {
     public EpithecaRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {

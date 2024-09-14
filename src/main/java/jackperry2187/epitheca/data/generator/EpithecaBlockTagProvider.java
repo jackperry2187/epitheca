@@ -8,7 +8,7 @@ import net.minecraft.registry.tag.BlockTags;
 
 import java.util.concurrent.CompletableFuture;
 
-import static jackperry2187.epitheca.init.BlockInit.SHROOMLIGHTS;
+import static jackperry2187.epitheca.init.block.Shroomlight.SHROOMLIGHTS;
 
 public class EpithecaBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     public EpithecaBlockTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
@@ -21,7 +21,7 @@ public class EpithecaBlockTagProvider extends FabricTagProvider.BlockTagProvider
         // Properly add tags to SHROOMLIGHTS
         SHROOMLIGHTS.forEach(block -> {
             getOrCreateTagBuilder(BlockTags.HOE_MINEABLE).add(block);
-            Epitheca.LOGGER.info("Added {} to hoe mineable block tag", block.getTranslationKey());
+            // Epitheca.LOGGER.info("Added {} to hoe mineable block tag", block.getTranslationKey());
         });
         Epitheca.LOGGER.info("Tags generated successfully!");
     }

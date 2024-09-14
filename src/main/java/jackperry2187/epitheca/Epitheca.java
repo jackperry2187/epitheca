@@ -1,6 +1,7 @@
 package jackperry2187.epitheca;
 
 import jackperry2187.epitheca.init.BlockInit;
+import jackperry2187.epitheca.init.block.Shroomlight;
 import jackperry2187.epitheca.init.ItemInit;
 import net.fabricmc.api.ModInitializer;
 
@@ -9,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import static net.minecraft.block.Blocks.SHROOMLIGHT;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,8 +29,8 @@ public class Epitheca implements ModInitializer {
 		BlockInit.load();
 
 		// Add shroomlights to creative tabs
-		ItemStack original_shroomlight = net.minecraft.block.Blocks.SHROOMLIGHT.asItem().getDefaultStack();
-		List<ItemStack> SHROOMLIGHTS = blocksToItemStacks(BlockInit.SHROOMLIGHTS);
+		ItemStack original_shroomlight = SHROOMLIGHT.asItem().getDefaultStack();
+		List<ItemStack> SHROOMLIGHTS = blocksToItemStacks(Shroomlight.SHROOMLIGHTS);
 		List<ItemStack> BEFORE_SHROOMLIGHTS = SHROOMLIGHTS.subList(0, 6);
 		List<ItemStack> AFTER_SHROOMLIGHTS = SHROOMLIGHTS.subList(6, SHROOMLIGHTS.size());
 

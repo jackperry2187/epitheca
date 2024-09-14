@@ -7,7 +7,7 @@ import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
 
-import static jackperry2187.epitheca.init.BlockInit.SHROOMLIGHTS;
+import static jackperry2187.epitheca.init.block.Shroomlight.SHROOMLIGHTS;
 
 public class EpithecaBlockLootTableProvider extends FabricBlockLootTableProvider {
 
