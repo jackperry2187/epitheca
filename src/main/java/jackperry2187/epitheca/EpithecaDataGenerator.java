@@ -12,6 +12,7 @@ public class EpithecaDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(EpithecaBlockLootTableProvider::new);
 		pack.addProvider(EpithecaBlockTagProvider::new);
 		pack.addProvider(EpithecaEnLanguageProvider::new);
+		pack.addProvider(EpithecaItemTagProvider::new);
 		pack.addProvider(EpithecaModelProvider::new);
 		pack.addProvider(EpithecaRecipeProvider::new);
 	}

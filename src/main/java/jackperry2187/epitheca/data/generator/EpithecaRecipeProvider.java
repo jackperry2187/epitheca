@@ -1,6 +1,7 @@
 package jackperry2187.epitheca.data.generator;
 
 import jackperry2187.epitheca.Epitheca;
+import jackperry2187.epitheca.init.TagInit;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Block;
@@ -33,11 +34,23 @@ public class EpithecaRecipeProvider extends FabricRecipeProvider {
             Block block = SHROOMLIGHTS.get(i);
             Item dye = filtered_dyes.get(i);
             ShapelessRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, block)
-                    .input(Blocks.SHROOMLIGHT, 1)
+                    .input(TagInit.SHROOMLIGHT_ITEM)
                     .input(dye, 1)
-                    .criterion(hasItem(Blocks.SHROOMLIGHT), conditionsFromItem(Blocks.SHROOMLIGHT))
+                    .group("shroomlight")
+                    // this recipe will show up whenever the player acquires a shroomlight OR the dye
+                    .criterion(hasItem(dye), conditionsFromItem(dye))
+                    .criterion("has_shroomlight", conditionsFromTag(TagInit.SHROOMLIGHT_ITEM))
                     .offerTo(exporter);
         }
+        // add recipe to dye back to the original Shroomlight
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, Blocks.SHROOMLIGHT)
+                .input(TagInit.SHROOMLIGHT_ITEM)
+                .input(Items.ORANGE_DYE, 1)
+                .group("shroomlight")
+                // this recipe will show up whenever the player acquires a shroomlight OR the dye
+                .criterion(hasItem(Items.ORANGE_DYE), conditionsFromItem(Items.ORANGE_DYE))
+                .criterion("has_shroomlight", conditionsFromTag(TagInit.SHROOMLIGHT_ITEM))
+                .offerTo(exporter);
 
         Epitheca.LOGGER.info("Recipes generated successfully!");
     }
