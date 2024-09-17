@@ -2,7 +2,7 @@
 	"schemaVersion": 1,
 	"id": "epitheca",
 	"version": "${version}",
-	"name": "epitheca",
+	"name": "Epitheca",
 	"description": "Epitheca is a mod that adds a variety of new craftable variants of existing blocks and items.",
 	"authors": [
 		"jackperry2187"
