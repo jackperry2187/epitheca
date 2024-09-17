@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
+import static jackperry2187.epitheca.init.block.Glowstone.loadGlowstones;
 import static jackperry2187.epitheca.init.block.Shroomlight.loadShroomlights;
 
 public class BlockInit {
@@ -24,5 +25,6 @@ public class BlockInit {
 
     public static void load() {
         loadShroomlights();
+        loadGlowstones();
     }
 }
