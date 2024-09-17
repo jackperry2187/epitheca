@@ -7,6 +7,7 @@ import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
 
+import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
 import static jackperry2187.epitheca.init.block.Shroomlight.SHROOMLIGHTS;
 
 public class EpithecaBlockLootTableProvider extends FabricBlockLootTableProvider {
@@ -17,12 +18,25 @@ public class EpithecaBlockLootTableProvider extends FabricBlockLootTableProvider
 
     @Override
     public void generate() {
-        // Generate loot tables for each Shroomlight variant
         Epitheca.LOGGER.info("Generating block loot tables...");
+        generateShroomlights();
+        generateGlowstones();
+        Epitheca.LOGGER.info("Block loot tables generated successfully!");
+    }
+
+    public void generateShroomlights() {
+        // Generate loot tables for each Shroomlight variant
         SHROOMLIGHTS.forEach(block -> {
             addDrop(block);
             // Epitheca.LOGGER.info("Added loot table for {}", block.getTranslationKey());
         });
-        Epitheca.LOGGER.info("Block loot tables generated successfully!");
+    }
+
+    public void generateGlowstones() {
+        // Generate loot tables for each Glowstone variant
+         GLOWSTONES.forEach(block -> {
+             addDrop(block);
+             // Epitheca.LOGGER.info("Added loot table for {}", block.getTranslationKey());
+         });
     }
 }

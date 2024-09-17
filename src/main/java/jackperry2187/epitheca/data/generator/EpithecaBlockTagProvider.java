@@ -10,6 +10,7 @@ import net.minecraft.registry.tag.BlockTags;
 
 import java.util.concurrent.CompletableFuture;
 
+import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
 import static jackperry2187.epitheca.init.block.Shroomlight.SHROOMLIGHTS;
 
 public class EpithecaBlockTagProvider extends FabricTagProvider.BlockTagProvider {
@@ -20,14 +21,27 @@ public class EpithecaBlockTagProvider extends FabricTagProvider.BlockTagProvider
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         Epitheca.LOGGER.info("Generating block tags...");
+        configureShroomlights();
+        configureGlowstones();
+        Epitheca.LOGGER.info("Block tags generated successfully!");
+    }
+
+    public void configureShroomlights() {
         // Properly add tags to SHROOMLIGHTS
         SHROOMLIGHTS.forEach(block -> {
             getOrCreateTagBuilder(TagInit.SHROOMLIGHT).add(block);
             getOrCreateTagBuilder(BlockTags.HOE_MINEABLE).add(block);
-            // Epitheca.LOGGER.info("Added {} to hoe mineable block tag", block.getTranslationKey());
         });
         // Add the original Shroomlight block to the shroomlight tag
         getOrCreateTagBuilder(TagInit.SHROOMLIGHT).add(Blocks.SHROOMLIGHT);
-        Epitheca.LOGGER.info("Block tags generated successfully!");
+    }
+
+    public void configureGlowstones() {
+        // Properly add tags to GLOWSTONES
+         GLOWSTONES.forEach(block -> {
+             getOrCreateTagBuilder(TagInit.GLOWSTONE).add(block);
+         });
+         // Add the original Glowstone block to the glowstone tag
+         getOrCreateTagBuilder(TagInit.GLOWSTONE).add(Blocks.GLOWSTONE);
     }
 }
