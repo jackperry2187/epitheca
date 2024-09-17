@@ -8,6 +8,7 @@ import net.minecraft.registry.RegistryWrapper;
 import java.util.concurrent.CompletableFuture;
 
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
+import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
 import static jackperry2187.epitheca.init.block.Shroomlight.SHROOMLIGHTS;
 
 public class EpithecaBlockLootTableProvider extends FabricBlockLootTableProvider {
@@ -21,6 +22,7 @@ public class EpithecaBlockLootTableProvider extends FabricBlockLootTableProvider
         Epitheca.LOGGER.info("Generating block loot tables...");
         generateShroomlights();
         generateGlowstones();
+        generateMagmas();
         Epitheca.LOGGER.info("Block loot tables generated successfully!");
     }
 
@@ -39,4 +41,14 @@ public class EpithecaBlockLootTableProvider extends FabricBlockLootTableProvider
              // Epitheca.LOGGER.info("Added loot table for {}", block.getTranslationKey());
          });
     }
+
+    public void generateMagmas() {
+        // Generate loot tables for each Magma variant
+        MAGMAS.forEach(block -> {
+            addDrop(block);
+            // Epitheca.LOGGER.info("Added loot table for {}", block.getTranslationKey());
+        });
+    }
+
+
 }

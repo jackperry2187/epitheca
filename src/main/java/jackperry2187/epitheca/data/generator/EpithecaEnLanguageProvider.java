@@ -8,6 +8,7 @@ import net.minecraft.registry.RegistryWrapper;
 import java.util.concurrent.CompletableFuture;
 
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
+import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
 import static jackperry2187.epitheca.init.block.Shroomlight.SHROOMLIGHTS;
 
 public class EpithecaEnLanguageProvider extends FabricLanguageProvider {
@@ -20,6 +21,7 @@ public class EpithecaEnLanguageProvider extends FabricLanguageProvider {
         Epitheca.LOGGER.info("Generating translations...");
         generateShroomlightTranslations(translationBuilder);
         generateGlowstoneTranslations(translationBuilder);
+        generateMagmaTranslations(translationBuilder);
         Epitheca.LOGGER.info("Translations generated successfully!");
     }
 
@@ -46,6 +48,19 @@ public class EpithecaEnLanguageProvider extends FabricLanguageProvider {
             String casedColor = color.substring(0, 1).toUpperCase() + color.substring(1);
             translationBuilder.add(translationKey, (isLight ? "Light " : "") + casedColor + " Glowstone");
             // Epitheca.LOGGER.info("Added translation for {} to {}{} Glowstone", translationKey, (isLight ? "Light " : ""), casedColor);
+        });
+    }
+
+    public void generateMagmaTranslations(TranslationBuilder translationBuilder) {
+        // Generate translations for each Magma variant
+        MAGMAS.forEach(block -> {
+            // translation key is formatted as block.epitheca.magma_[light_]<color>
+            String translationKey = block.getTranslationKey();
+            String color = translationKey.substring(translationKey.lastIndexOf('_') + 1);
+            boolean isLight = translationKey.substring(translationKey.indexOf('_')).contains("light");
+            String casedColor = color.substring(0, 1).toUpperCase() + color.substring(1);
+            translationBuilder.add(translationKey, (isLight ? "Light " : "") + casedColor + " Magma");
+            // Epitheca.LOGGER.info("Added translation for {} to {}{} Magma", translationKey, (isLight ? "Light " : ""), casedColor);
         });
     }
 }

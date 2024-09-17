@@ -8,7 +8,8 @@ It is currently heavily WIP, and as such, many features are not yet implemented.
 ![Shroomlight Variants](./src/main/resources/assets/epitheca/shroomlights_8x2.png)
 - [x] Glowstone Variants  
 ![Glowstone Variants](./src/main/resources/assets/epitheca/glowstone_8x2.png)
-- [ ] Magma Variants  
+- [X] Magma Variants  
+![Magma Variants](./src/main/resources/assets/epitheca/magma.gif)
 - [ ] Froglight Variants  
 - [ ] Pumpkin / Carved Pumpkin / Jack O' Lantern Variants  
 - [ ] Barrel Variants  

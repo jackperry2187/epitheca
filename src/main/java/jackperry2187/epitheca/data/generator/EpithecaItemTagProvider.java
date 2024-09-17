@@ -10,6 +10,7 @@ import net.minecraft.registry.RegistryWrapper;
 import java.util.concurrent.CompletableFuture;
 
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
+import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
 import static jackperry2187.epitheca.init.block.Shroomlight.SHROOMLIGHTS;
 
 public class EpithecaItemTagProvider extends FabricTagProvider.ItemTagProvider {
@@ -22,6 +23,7 @@ public class EpithecaItemTagProvider extends FabricTagProvider.ItemTagProvider {
         Epitheca.LOGGER.info("Generating item tags...");
         configureShroomlights();
         configureGlowstones();
+        configureMagmas();
         Epitheca.LOGGER.info("Item tags generated successfully!");
     }
 
@@ -45,5 +47,16 @@ public class EpithecaItemTagProvider extends FabricTagProvider.ItemTagProvider {
         // Add the original Glowstone item to the glowstone tag
         getOrCreateTagBuilder(TagInit.GLOWSTONE_ITEM).add(Blocks.GLOWSTONE.asItem());
         // Epitheca.LOGGER.info("Added {} to the glowstone_item tag", Blocks.GLOWSTONE.getTranslationKey());
+    }
+
+    public void configureMagmas() {
+        // Properly add tags to MAGMAS
+        MAGMAS.forEach(block -> {
+            getOrCreateTagBuilder(TagInit.MAGMA_ITEM).add(block.asItem());
+            // Epitheca.LOGGER.info("Added {} to the magma_item tag", block.getTranslationKey());
+        });
+        // Add the original Glowstone item to the magma tag
+        getOrCreateTagBuilder(TagInit.MAGMA_ITEM).add(Blocks.MAGMA_BLOCK.asItem());
+        // Epitheca.LOGGER.info("Added {} to the magma_item tag", Blocks.MAGMA_BLOCK.getTranslationKey());
     }
 }

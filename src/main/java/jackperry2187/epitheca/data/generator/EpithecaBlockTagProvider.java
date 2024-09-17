@@ -11,6 +11,7 @@ import net.minecraft.registry.tag.BlockTags;
 import java.util.concurrent.CompletableFuture;
 
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
+import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
 import static jackperry2187.epitheca.init.block.Shroomlight.SHROOMLIGHTS;
 
 public class EpithecaBlockTagProvider extends FabricTagProvider.BlockTagProvider {
@@ -23,6 +24,7 @@ public class EpithecaBlockTagProvider extends FabricTagProvider.BlockTagProvider
         Epitheca.LOGGER.info("Generating block tags...");
         configureShroomlights();
         configureGlowstones();
+        configureMagmas();
         Epitheca.LOGGER.info("Block tags generated successfully!");
     }
 
@@ -43,5 +45,14 @@ public class EpithecaBlockTagProvider extends FabricTagProvider.BlockTagProvider
          });
          // Add the original Glowstone block to the glowstone tag
          getOrCreateTagBuilder(TagInit.GLOWSTONE).add(Blocks.GLOWSTONE);
+    }
+
+    public void configureMagmas() {
+        // Properly add tags to MAGMAS
+        MAGMAS.forEach(block -> {
+            getOrCreateTagBuilder(TagInit.MAGMA).add(block);
+        });
+        // Add the original Glowstone block to the glowstone tag
+        getOrCreateTagBuilder(TagInit.MAGMA).add(Blocks.MAGMA_BLOCK);
     }
 }

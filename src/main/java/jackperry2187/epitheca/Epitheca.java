@@ -3,6 +3,7 @@ package jackperry2187.epitheca;
 import jackperry2187.epitheca.init.BlockInit;
 import jackperry2187.epitheca.init.block.Glowstone;
 import jackperry2187.epitheca.init.block.Shroomlight;
+import jackperry2187.epitheca.init.block.Magma;
 import jackperry2187.epitheca.init.ItemInit;
 import net.fabricmc.api.ModInitializer;
 
@@ -11,12 +12,12 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
-import static net.minecraft.block.Blocks.SHROOMLIGHT;
-import static net.minecraft.block.Blocks.GLOWSTONE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+
+import static net.minecraft.block.Blocks.*;
 
 public class Epitheca implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger("Epitheca");
@@ -33,6 +34,7 @@ public class Epitheca implements ModInitializer {
 		// Load creative tab entries
 		initializeShroomlightCreativeTabEntries();
 		initializeGlowstoneCreativeTabEntries();
+		initializeMagmaCreativeTabEntries();
 
 		LOGGER.info("Initialized Successfully!");
 	}
@@ -68,6 +70,23 @@ public class Epitheca implements ModInitializer {
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
 			entries.addBefore(original_glowstone, BEFORE_GLOWSTONES);
 			entries.addAfter(original_glowstone, AFTER_GLOWSTONES);
+		});
+	}
+
+	public void initializeMagmaCreativeTabEntries() {
+		// Add magmas to creative tabs
+		ItemStack original_magma = MAGMA_BLOCK.asItem().getDefaultStack();
+		List<ItemStack> MAGMAS = blocksToItemStacks(Magma.MAGMAS);
+		List<ItemStack> BEFORE_MAGMAS = MAGMAS.subList(0, 6);
+		List<ItemStack> AFTER_MAGMAS = MAGMAS.subList(6, MAGMAS.size());
+
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
+			entries.addBefore(original_magma, BEFORE_MAGMAS);
+			entries.addAfter(original_magma, AFTER_MAGMAS);
+		});
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
+			entries.addBefore(original_magma, BEFORE_MAGMAS);
+			entries.addAfter(original_magma, AFTER_MAGMAS);
 		});
 	}
 
