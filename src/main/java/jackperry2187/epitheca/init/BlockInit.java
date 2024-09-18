@@ -10,6 +10,7 @@ import net.minecraft.registry.Registry;
 import static jackperry2187.epitheca.init.block.Glowstone.loadGlowstones;
 import static jackperry2187.epitheca.init.block.Shroomlight.loadShroomlights;
 import static jackperry2187.epitheca.init.block.Magma.loadMagmas;
+import static jackperry2187.epitheca.init.block.Doors.loadDoorBlocks;
 
 public class BlockInit {
     public static <T extends Block> T register(String name, T block) {
@@ -28,5 +29,6 @@ public class BlockInit {
         loadShroomlights();
         loadGlowstones();
         loadMagmas();
+        loadDoorBlocks();
     }
 }

@@ -7,6 +7,7 @@ import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
 
+import static jackperry2187.epitheca.init.block.Doors.DOORS;
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
 import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
 import static jackperry2187.epitheca.init.block.Shroomlight.SHROOMLIGHTS;
@@ -22,6 +23,7 @@ public class EpithecaEnLanguageProvider extends FabricLanguageProvider {
         generateShroomlightTranslations(translationBuilder);
         generateGlowstoneTranslations(translationBuilder);
         generateMagmaTranslations(translationBuilder);
+        generateDoorTranslations(translationBuilder);
         Epitheca.LOGGER.info("Translations generated successfully!");
     }
 
@@ -30,11 +32,9 @@ public class EpithecaEnLanguageProvider extends FabricLanguageProvider {
         SHROOMLIGHTS.forEach(block -> {
             // translation key is formatted as block.epitheca.shroomlight_[light_]<color>
             String translationKey = block.getTranslationKey();
-            String color = translationKey.substring(translationKey.lastIndexOf('_') + 1);
-            boolean isLight = translationKey.substring(translationKey.indexOf('_')).contains("light");
-            String casedColor = color.substring(0, 1).toUpperCase() + color.substring(1);
-            translationBuilder.add(translationKey, (isLight ? "Light " : "") + casedColor + " Shroomlight");
-            // Epitheca.LOGGER.info("Added translation for {} to {}{} Shroomlight", translationKey, (isLight ? "Light " : ""), casedColor);
+            String casedColor = Epitheca.capsCase(translationKey.substring(translationKey.indexOf('_') + 1), "_");
+            translationBuilder.add(translationKey, casedColor + " Shroomlight");
+            // Epitheca.LOGGER.info("Added translation for {} to {} Shroomlight", translationKey, casedColor);
         });
     }
 
@@ -43,11 +43,9 @@ public class EpithecaEnLanguageProvider extends FabricLanguageProvider {
         GLOWSTONES.forEach(block -> {
             // translation key is formatted as block.epitheca.glowstone_[light_]<color>
             String translationKey = block.getTranslationKey();
-            String color = translationKey.substring(translationKey.lastIndexOf('_') + 1);
-            boolean isLight = translationKey.substring(translationKey.indexOf('_')).contains("light");
-            String casedColor = color.substring(0, 1).toUpperCase() + color.substring(1);
-            translationBuilder.add(translationKey, (isLight ? "Light " : "") + casedColor + " Glowstone");
-            // Epitheca.LOGGER.info("Added translation for {} to {}{} Glowstone", translationKey, (isLight ? "Light " : ""), casedColor);
+            String casedColor = Epitheca.capsCase(translationKey.substring(translationKey.indexOf('_') + 1), "_");
+            translationBuilder.add(translationKey, casedColor + " Glowstone");
+            // Epitheca.LOGGER.info("Added translation for {} to {} Glowstone", translationKey, casedColor);
         });
     }
 
@@ -56,11 +54,21 @@ public class EpithecaEnLanguageProvider extends FabricLanguageProvider {
         MAGMAS.forEach(block -> {
             // translation key is formatted as block.epitheca.magma_[light_]<color>
             String translationKey = block.getTranslationKey();
-            String color = translationKey.substring(translationKey.lastIndexOf('_') + 1);
-            boolean isLight = translationKey.substring(translationKey.indexOf('_')).contains("light");
-            String casedColor = color.substring(0, 1).toUpperCase() + color.substring(1);
-            translationBuilder.add(translationKey, (isLight ? "Light " : "") + casedColor + " Magma");
-            // Epitheca.LOGGER.info("Added translation for {} to {}{} Magma", translationKey, (isLight ? "Light " : ""), casedColor);
+            String casedColor = Epitheca.capsCase(translationKey.substring(translationKey.indexOf('_') + 1), "_");
+            translationBuilder.add(translationKey, casedColor + " Magma");
+            // Epitheca.LOGGER.info("Added translation for {} to {} Magma", translationKey, casedColor);
+        });
+    }
+
+    public void generateDoorTranslations(TranslationBuilder translationBuilder) {
+        // Generate translations for each Door variant
+        DOORS.forEach(block -> {
+            // translation key is formatted as block.epitheca.<material>_door
+            String translationKey = block.getTranslationKey();
+            String material = translationKey.substring(translationKey.lastIndexOf('.') + 1, translationKey.lastIndexOf('_'));
+            String casedMaterial = Epitheca.capsCase(material, "_");
+            translationBuilder.add(translationKey, casedMaterial + " Door");
+            // Epitheca.LOGGER.info("Added translation for {} to {} Door", translationKey, casedMaterial);
         });
     }
 }

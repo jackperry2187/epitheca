@@ -10,6 +10,7 @@ import net.minecraft.registry.tag.BlockTags;
 
 import java.util.concurrent.CompletableFuture;
 
+import static jackperry2187.epitheca.init.block.Doors.DOORS;
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
 import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
 import static jackperry2187.epitheca.init.block.Shroomlight.SHROOMLIGHTS;
@@ -25,6 +26,7 @@ public class EpithecaBlockTagProvider extends FabricTagProvider.BlockTagProvider
         configureShroomlights();
         configureGlowstones();
         configureMagmas();
+        configureDoors();
         Epitheca.LOGGER.info("Block tags generated successfully!");
     }
 
@@ -51,8 +53,20 @@ public class EpithecaBlockTagProvider extends FabricTagProvider.BlockTagProvider
         // Properly add tags to MAGMAS
         MAGMAS.forEach(block -> {
             getOrCreateTagBuilder(TagInit.MAGMA).add(block);
+            getOrCreateTagBuilder(BlockTags.INFINIBURN_END).add(block);
+            getOrCreateTagBuilder(BlockTags.INFINIBURN_OVERWORLD).add(block);
+            getOrCreateTagBuilder(BlockTags.INFINIBURN_NETHER).add(block);
+            getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(block);
         });
         // Add the original Glowstone block to the glowstone tag
         getOrCreateTagBuilder(TagInit.MAGMA).add(Blocks.MAGMA_BLOCK);
+    }
+
+    public void configureDoors() {
+        // Properly add tags to DOORS
+        DOORS.forEach(block -> {
+            getOrCreateTagBuilder(BlockTags.DOORS).add(block);
+            getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(block);
+        });
     }
 }

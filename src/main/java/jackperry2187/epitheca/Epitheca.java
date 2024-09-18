@@ -1,6 +1,7 @@
 package jackperry2187.epitheca;
 
 import jackperry2187.epitheca.init.BlockInit;
+import jackperry2187.epitheca.init.block.Doors;
 import jackperry2187.epitheca.init.block.Glowstone;
 import jackperry2187.epitheca.init.block.Shroomlight;
 import jackperry2187.epitheca.init.block.Magma;
@@ -35,6 +36,7 @@ public class Epitheca implements ModInitializer {
 		initializeShroomlightCreativeTabEntries();
 		initializeGlowstoneCreativeTabEntries();
 		initializeMagmaCreativeTabEntries();
+		initializeDoorCreativeTabEntries();
 
 		LOGGER.info("Initialized Successfully!");
 	}
@@ -90,6 +92,23 @@ public class Epitheca implements ModInitializer {
 		});
 	}
 
+	public void initializeDoorCreativeTabEntries() {
+		// Add doors to creative tabs
+		ItemStack original_door = IRON_DOOR.asItem().getDefaultStack();
+		List<ItemStack> DOORS = blocksToItemStacks(Doors.DOORS);
+		List<ItemStack> BEFORE_DOORS = DOORS.subList(0, 4);
+		List<ItemStack> AFTER_DOORS = DOORS.subList(4, DOORS.size());
+
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
+			entries.addBefore(original_door, BEFORE_DOORS);
+			entries.addAfter(original_door, AFTER_DOORS);
+		});
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
+			entries.addBefore(original_door, BEFORE_DOORS);
+			entries.addAfter(original_door, AFTER_DOORS);
+		});
+	}
+
 	public static Identifier id(String path) {
 		return Identifier.of(MOD_ID, path);
 	}
@@ -97,5 +116,14 @@ public class Epitheca implements ModInitializer {
 	public static List<ItemStack> blocksToItemStacks(List<Block> blocks) {
 		var x = blocks.stream().map(block -> block.asItem().getDefaultStack());
 		return x.toList();
+	}
+
+	public static String capsCase(String str, String delimiter) {
+		String[] words = str.split(delimiter);
+		StringBuilder sb = new StringBuilder();
+		for (String word : words) {
+			sb.append(word.substring(0, 1).toUpperCase()).append(word.substring(1)).append(" ");
+		}
+		return sb.toString().trim();
 	}
 }

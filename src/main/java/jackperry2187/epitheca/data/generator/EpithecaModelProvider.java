@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 
+import static jackperry2187.epitheca.init.block.Doors.DOORS;
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
 import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
 import static jackperry2187.epitheca.init.block.Shroomlight.SHROOMLIGHTS;
@@ -21,6 +22,7 @@ public class EpithecaModelProvider extends FabricModelProvider {
         SHROOMLIGHTS.forEach(blockStateModelGenerator::registerSimpleCubeAll);
         GLOWSTONES.forEach(blockStateModelGenerator::registerSimpleCubeAll);
         MAGMAS.forEach(blockStateModelGenerator::registerSimpleCubeAll);
+        DOORS.forEach(blockStateModelGenerator::registerDoor);
         Epitheca.LOGGER.info("Block state models generated successfully!");
     }
 

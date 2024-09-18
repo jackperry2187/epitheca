@@ -7,9 +7,12 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeExporter;
+import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
+import net.minecraft.data.server.recipe.SmithingTransformRecipeJsonBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 
@@ -20,6 +23,7 @@ import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
 import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
 import static jackperry2187.epitheca.init.block.Shroomlight.SHROOMLIGHTS;
 import static jackperry2187.epitheca.init.item.Defaults.DYES;
+import static jackperry2187.epitheca.init.item.Doors.*;
 
 public class EpithecaRecipeProvider extends FabricRecipeProvider {
     public EpithecaRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
@@ -31,6 +35,7 @@ public class EpithecaRecipeProvider extends FabricRecipeProvider {
         generateShroomlights(exporter);
         generateGlowstones(exporter);
         generateMagmas(exporter);
+        generateDoors(exporter);
         Epitheca.LOGGER.info("Recipes generated successfully!");
     }
 
@@ -122,5 +127,67 @@ public class EpithecaRecipeProvider extends FabricRecipeProvider {
                 .criterion("has_magma", conditionsFromTag(TagInit.MAGMA_ITEM))
                 .offerTo(exporter);
         // Epitheca.LOGGER.info("Added recipe to dye {} to {}", Items.ORANGE_DYE.getTranslationKey(), Blocks.MAGMA_BLOCK.getTranslationKey());
+    }
+
+    public void generateDoors(RecipeExporter exporter) {
+        // Generate recipes for each Door variant
+
+        // Cobblestone door
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, COBBLESTONE_DOOR_ITEM)
+                .input('C', Items.COBBLESTONE)
+                .pattern("CC")
+                .pattern("CC")
+                .pattern("CC")
+                .group("door")
+                .criterion(hasItem(Blocks.COBBLESTONE), conditionsFromItem(Blocks.COBBLESTONE))
+                .offerTo(exporter);
+
+        // Mossy cobblestone door
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, MOSSY_COBBLESTONE_DOOR_ITEM)
+                .input('C', Items.MOSSY_COBBLESTONE)
+                .pattern("CC")
+                .pattern("CC")
+                .pattern("CC")
+                .group("door")
+                .criterion(hasItem(Blocks.MOSSY_COBBLESTONE), conditionsFromItem(Blocks.MOSSY_COBBLESTONE))
+                .offerTo(exporter);
+
+        // Cobbled deepslate door
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, COBBLED_DEEPSLATE_DOOR_ITEM)
+                .input('C', Items.COBBLED_DEEPSLATE)
+                .pattern("CC")
+                .pattern("CC")
+                .pattern("CC")
+                .group("door")
+                .criterion(hasItem(Blocks.COBBLED_DEEPSLATE), conditionsFromItem(Blocks.COBBLED_DEEPSLATE))
+                .offerTo(exporter);
+
+        // Smooth stone door
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, SMOOTH_STONE_DOOR_ITEM)
+                .input('C', Items.SMOOTH_STONE)
+                .pattern("CC")
+                .pattern("CC")
+                .pattern("CC")
+                .group("door")
+                .criterion(hasItem(Blocks.SMOOTH_STONE), conditionsFromItem(Blocks.SMOOTH_STONE))
+                .offerTo(exporter);
+
+        // Gold door
+        SmithingTransformRecipeJsonBuilder.create(Ingredient.EMPTY, Ingredient.ofItems(Items.IRON_DOOR), Ingredient.ofItems(Items.GOLD_INGOT), RecipeCategory.DECORATIONS, GOLD_DOOR_ITEM)
+                .criterion(hasItem(Items.IRON_DOOR), conditionsFromItem(Items.IRON_DOOR))
+                .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
+                .offerTo(exporter, "gold_door_smithing");
+
+        // Diamond door
+        SmithingTransformRecipeJsonBuilder.create(Ingredient.EMPTY, Ingredient.ofItems(GOLD_DOOR_ITEM), Ingredient.ofItems(Items.DIAMOND), RecipeCategory.DECORATIONS, DIAMOND_DOOR_ITEM)
+                .criterion(hasItem(GOLD_DOOR_ITEM), conditionsFromItem(GOLD_DOOR_ITEM))
+                .criterion(hasItem(Items.DIAMOND), conditionsFromItem(Items.DIAMOND))
+                .offerTo(exporter, "diamond_door_smithing");
+
+        // Emerald door
+        SmithingTransformRecipeJsonBuilder.create(Ingredient.EMPTY, Ingredient.ofItems(DIAMOND_DOOR_ITEM), Ingredient.ofItems(Items.EMERALD), RecipeCategory.DECORATIONS, EMERALD_DOOR_ITEM)
+                .criterion(hasItem(DIAMOND_DOOR_ITEM), conditionsFromItem(DIAMOND_DOOR_ITEM))
+                .criterion(hasItem(Items.EMERALD), conditionsFromItem(Items.EMERALD))
+                .offerTo(exporter, "emerald_door_smithing");
     }
 }
