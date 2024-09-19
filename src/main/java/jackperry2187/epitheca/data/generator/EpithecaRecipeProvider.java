@@ -22,6 +22,7 @@ import java.util.concurrent.CompletableFuture;
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
 import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
 import static jackperry2187.epitheca.init.block.Shroomlight.SHROOMLIGHTS;
+import static jackperry2187.epitheca.init.item.Bars.*;
 import static jackperry2187.epitheca.init.item.Defaults.DYES;
 import static jackperry2187.epitheca.init.item.Doors.*;
 
@@ -36,6 +37,7 @@ public class EpithecaRecipeProvider extends FabricRecipeProvider {
         generateGlowstones(exporter);
         generateMagmas(exporter);
         generateDoors(exporter);
+        generateBars(exporter);
         Epitheca.LOGGER.info("Recipes generated successfully!");
     }
 
@@ -133,7 +135,7 @@ public class EpithecaRecipeProvider extends FabricRecipeProvider {
         // Generate recipes for each Door variant
 
         // Cobblestone door
-        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, COBBLESTONE_DOOR_ITEM)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, COBBLESTONE_DOOR_ITEM, 3)
                 .input('C', Items.COBBLESTONE)
                 .pattern("CC")
                 .pattern("CC")
@@ -143,7 +145,7 @@ public class EpithecaRecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter);
 
         // Mossy cobblestone door
-        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, MOSSY_COBBLESTONE_DOOR_ITEM)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, MOSSY_COBBLESTONE_DOOR_ITEM, 3)
                 .input('C', Items.MOSSY_COBBLESTONE)
                 .pattern("CC")
                 .pattern("CC")
@@ -153,7 +155,7 @@ public class EpithecaRecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter);
 
         // Cobbled deepslate door
-        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, COBBLED_DEEPSLATE_DOOR_ITEM)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, COBBLED_DEEPSLATE_DOOR_ITEM, 3)
                 .input('C', Items.COBBLED_DEEPSLATE)
                 .pattern("CC")
                 .pattern("CC")
@@ -163,7 +165,7 @@ public class EpithecaRecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter);
 
         // Smooth stone door
-        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, SMOOTH_STONE_DOOR_ITEM)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, SMOOTH_STONE_DOOR_ITEM, 3)
                 .input('C', Items.SMOOTH_STONE)
                 .pattern("CC")
                 .pattern("CC")
@@ -189,5 +191,63 @@ public class EpithecaRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(DIAMOND_DOOR_ITEM), conditionsFromItem(DIAMOND_DOOR_ITEM))
                 .criterion(hasItem(Items.EMERALD), conditionsFromItem(Items.EMERALD))
                 .offerTo(exporter, "emerald_door_smithing");
+    }
+
+    public void generateBars(RecipeExporter exporter) {
+        // Generate recipes for each Door variant
+
+        // Cobblestone bars
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, COBBLESTONE_BARS_ITEM, 16)
+                .input('C', Items.COBBLESTONE)
+                .pattern("CCC")
+                .pattern("CCC")
+                .group("bars")
+                .criterion(hasItem(Blocks.COBBLESTONE), conditionsFromItem(Blocks.COBBLESTONE))
+                .offerTo(exporter);
+
+        // Mossy cobblestone bars
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, MOSSY_COBBLESTONE_BARS_ITEM, 16)
+                .input('C', Items.MOSSY_COBBLESTONE)
+                .pattern("CCC")
+                .pattern("CCC")
+                .group("bars")
+                .criterion(hasItem(Blocks.MOSSY_COBBLESTONE), conditionsFromItem(Blocks.MOSSY_COBBLESTONE))
+                .offerTo(exporter);
+
+        // Cobbled deepslate bars
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, COBBLED_DEEPSLATE_BARS_ITEM, 16)
+                .input('C', Items.COBBLED_DEEPSLATE)
+                .pattern("CCC")
+                .pattern("CCC")
+                .group("bars")
+                .criterion(hasItem(Blocks.COBBLED_DEEPSLATE), conditionsFromItem(Blocks.COBBLED_DEEPSLATE))
+                .offerTo(exporter);
+
+        // Smooth stone bars
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, SMOOTH_STONE_BARS_ITEM, 16)
+                .input('C', Items.SMOOTH_STONE)
+                .pattern("CCC")
+                .pattern("CCC")
+                .group("bars")
+                .criterion(hasItem(Blocks.SMOOTH_STONE), conditionsFromItem(Blocks.SMOOTH_STONE))
+                .offerTo(exporter);
+
+        // Gold bars
+        SmithingTransformRecipeJsonBuilder.create(Ingredient.EMPTY, Ingredient.ofItems(Items.IRON_BARS), Ingredient.ofItems(Items.GOLD_INGOT), RecipeCategory.DECORATIONS, GOLD_BARS_ITEM)
+                .criterion(hasItem(Items.IRON_BARS), conditionsFromItem(Items.IRON_BARS))
+                .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
+                .offerTo(exporter, "gold_bars_smithing");
+
+        // Diamond bars
+        SmithingTransformRecipeJsonBuilder.create(Ingredient.EMPTY, Ingredient.ofItems(GOLD_BARS_ITEM), Ingredient.ofItems(Items.DIAMOND), RecipeCategory.DECORATIONS, DIAMOND_BARS_ITEM)
+                .criterion(hasItem(GOLD_BARS_ITEM), conditionsFromItem(GOLD_BARS_ITEM))
+                .criterion(hasItem(Items.DIAMOND), conditionsFromItem(Items.DIAMOND))
+                .offerTo(exporter, "diamond_bars_smithing");
+
+        // Emerald bars
+        SmithingTransformRecipeJsonBuilder.create(Ingredient.EMPTY, Ingredient.ofItems(DIAMOND_BARS_ITEM), Ingredient.ofItems(Items.EMERALD), RecipeCategory.DECORATIONS, EMERALD_BARS_ITEM)
+                .criterion(hasItem(DIAMOND_BARS_ITEM), conditionsFromItem(DIAMOND_BARS_ITEM))
+                .criterion(hasItem(Items.EMERALD), conditionsFromItem(Items.EMERALD))
+                .offerTo(exporter, "emerald_bars_smithing");
     }
 }

@@ -1,13 +1,9 @@
 package jackperry2187.epitheca;
 
 import jackperry2187.epitheca.init.BlockInit;
-import jackperry2187.epitheca.init.block.Doors;
-import jackperry2187.epitheca.init.block.Glowstone;
-import jackperry2187.epitheca.init.block.Shroomlight;
-import jackperry2187.epitheca.init.block.Magma;
 import jackperry2187.epitheca.init.ItemInit;
+import jackperry2187.epitheca.init.block.*;
 import net.fabricmc.api.ModInitializer;
-
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemGroups;
@@ -37,6 +33,7 @@ public class Epitheca implements ModInitializer {
 		initializeGlowstoneCreativeTabEntries();
 		initializeMagmaCreativeTabEntries();
 		initializeDoorCreativeTabEntries();
+		initializeBarsCreativeTabEntries();
 
 		LOGGER.info("Initialized Successfully!");
 	}
@@ -106,6 +103,19 @@ public class Epitheca implements ModInitializer {
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
 			entries.addBefore(original_door, BEFORE_DOORS);
 			entries.addAfter(original_door, AFTER_DOORS);
+		});
+	}
+
+	public void initializeBarsCreativeTabEntries() {
+		// Add bars to creative tabs
+		ItemStack original_bars = IRON_BARS.asItem().getDefaultStack();
+		List<ItemStack> BARS = blocksToItemStacks(Bars.BARS);
+		List<ItemStack> BEFORE_BARS = BARS.subList(0, 4);
+		List<ItemStack> AFTER_BARS = BARS.subList(4, BARS.size());
+
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
+			entries.addBefore(original_bars, BEFORE_BARS);
+			entries.addAfter(original_bars, AFTER_BARS);
 		});
 	}
 

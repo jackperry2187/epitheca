@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
+import static jackperry2187.epitheca.init.block.Bars.loadBars;
 import static jackperry2187.epitheca.init.block.Glowstone.loadGlowstones;
 import static jackperry2187.epitheca.init.block.Shroomlight.loadShroomlights;
 import static jackperry2187.epitheca.init.block.Magma.loadMagmas;
@@ -30,5 +31,6 @@ public class BlockInit {
         loadGlowstones();
         loadMagmas();
         loadDoorBlocks();
+        loadBars();
     }
 }

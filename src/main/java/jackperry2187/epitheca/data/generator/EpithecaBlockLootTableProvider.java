@@ -7,6 +7,7 @@ import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
 
+import static jackperry2187.epitheca.init.block.Bars.BARS;
 import static jackperry2187.epitheca.init.block.Doors.DOORS;
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
 import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
@@ -25,6 +26,7 @@ public class EpithecaBlockLootTableProvider extends FabricBlockLootTableProvider
         generateGlowstones();
         generateMagmas();
         generateDoors();
+        generateBars();
         Epitheca.LOGGER.info("Block loot tables generated successfully!");
     }
 
@@ -56,6 +58,14 @@ public class EpithecaBlockLootTableProvider extends FabricBlockLootTableProvider
         // Generate loot tables for each Door variant
         DOORS.forEach(block -> {
             doorDrops(block);
+            // Epitheca.LOGGER.info("Added loot table for {}", block.getTranslationKey());
+        });
+    }
+
+    public void generateBars() {
+        // Generate loot tables for each Bars variant
+        BARS.forEach(block -> {
+            addDrop(block);
             // Epitheca.LOGGER.info("Added loot table for {}", block.getTranslationKey());
         });
     }

@@ -10,6 +10,7 @@ import net.minecraft.registry.tag.BlockTags;
 
 import java.util.concurrent.CompletableFuture;
 
+import static jackperry2187.epitheca.init.block.Bars.BARS;
 import static jackperry2187.epitheca.init.block.Doors.DOORS;
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
 import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
@@ -27,6 +28,7 @@ public class EpithecaBlockTagProvider extends FabricTagProvider.BlockTagProvider
         configureGlowstones();
         configureMagmas();
         configureDoors();
+        configureBars();
         Epitheca.LOGGER.info("Block tags generated successfully!");
     }
 
@@ -66,6 +68,14 @@ public class EpithecaBlockTagProvider extends FabricTagProvider.BlockTagProvider
         // Properly add tags to DOORS
         DOORS.forEach(block -> {
             getOrCreateTagBuilder(BlockTags.DOORS).add(block);
+            getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(block);
+        });
+    }
+
+    public void configureBars() {
+        // Properly add tags to BARS
+        BARS.forEach(block -> {
+            getOrCreateTagBuilder(BlockTags.DRAGON_IMMUNE).add(block);
             getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(block);
         });
     }

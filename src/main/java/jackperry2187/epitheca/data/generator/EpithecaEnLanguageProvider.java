@@ -7,6 +7,7 @@ import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
 
+import static jackperry2187.epitheca.init.block.Bars.BARS;
 import static jackperry2187.epitheca.init.block.Doors.DOORS;
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
 import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
@@ -24,6 +25,7 @@ public class EpithecaEnLanguageProvider extends FabricLanguageProvider {
         generateGlowstoneTranslations(translationBuilder);
         generateMagmaTranslations(translationBuilder);
         generateDoorTranslations(translationBuilder);
+        generateBarTranslations(translationBuilder);
         Epitheca.LOGGER.info("Translations generated successfully!");
     }
 
@@ -65,10 +67,20 @@ public class EpithecaEnLanguageProvider extends FabricLanguageProvider {
         DOORS.forEach(block -> {
             // translation key is formatted as block.epitheca.<material>_door
             String translationKey = block.getTranslationKey();
-            String material = translationKey.substring(translationKey.lastIndexOf('.') + 1, translationKey.lastIndexOf('_'));
-            String casedMaterial = Epitheca.capsCase(material, "_");
-            translationBuilder.add(translationKey, casedMaterial + " Door");
-            // Epitheca.LOGGER.info("Added translation for {} to {} Door", translationKey, casedMaterial);
+            String casedMaterial = Epitheca.capsCase(translationKey.substring(translationKey.lastIndexOf('.') + 1), "_");
+            translationBuilder.add(translationKey, casedMaterial);
+            // Epitheca.LOGGER.info("Added translation for {} to {}", translationKey, casedMaterial);
+        });
+    }
+
+    public void generateBarTranslations(TranslationBuilder translationBuilder) {
+        // Generate translations for each Bars variant
+        BARS.forEach(block -> {
+            // translation key is formatted as block.epitheca.<material>_bars
+            String translationKey = block.getTranslationKey();
+            String casedMaterial = Epitheca.capsCase(translationKey.substring(translationKey.lastIndexOf('.') + 1), "_");
+            translationBuilder.add(translationKey, casedMaterial);
+            // Epitheca.LOGGER.info("Added translation for {} to {}", translationKey, casedMaterial);
         });
     }
 }
