@@ -12,6 +12,8 @@ It is currently heavily WIP, and as such, many features are not yet implemented.
 ![Magma Variants](./src/main/resources/assets/epitheca/magma.gif)
 - [X] Iron Door Variants (Cobblestone, Mossy Cobblestone, Cobbled Deepslate, Smooth Stone, Gold, Diamond, Emerald)  
 ![Iron Door Variants](./src/main/resources/assets/epitheca/doors_8x1.png)
+- [X] Bar Variants (Cobblestone, Mossy Cobblestone, Cobbled Deepslate, Smooth Stone, Gold, Diamond, Emerald)
+![Bar Variants](./src/main/resources/assets/epitheca/bars_8x1.png)
 - [ ] Froglight Variants  
 - [ ] Pumpkin / Carved Pumpkin / Jack O' Lantern Variants  
 - [ ] Barrel Variants  
