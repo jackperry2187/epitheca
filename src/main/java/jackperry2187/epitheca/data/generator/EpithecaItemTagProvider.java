@@ -13,6 +13,7 @@ import java.util.concurrent.CompletableFuture;
 import static jackperry2187.epitheca.init.block.Doors.DOORS;
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
 import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
+import static jackperry2187.epitheca.init.block.Pumpkins.PUMPKINS;
 import static jackperry2187.epitheca.init.block.Shroomlight.SHROOMLIGHTS;
 
 public class EpithecaItemTagProvider extends FabricTagProvider.ItemTagProvider {
@@ -27,6 +28,7 @@ public class EpithecaItemTagProvider extends FabricTagProvider.ItemTagProvider {
         configureGlowstones();
         configureMagmas();
         configureDoors();
+        configurePumpkins();
         Epitheca.LOGGER.info("Item tags generated successfully!");
     }
 
@@ -67,6 +69,15 @@ public class EpithecaItemTagProvider extends FabricTagProvider.ItemTagProvider {
         // Properly add tags to DOORS
         DOORS.forEach(block -> {
             getOrCreateTagBuilder(ItemTags.DOORS).add(block.asItem());
+        });
+    }
+
+    public void configurePumpkins() {
+        // Properly add tags to PUMPKINS
+        PUMPKINS.forEach(block -> {
+            getOrCreateTagBuilder(TagInit.PUMPKIN_ITEM).add(block.asItem());
+            getOrCreateTagBuilder(ItemTags.EQUIPPABLE_ENCHANTABLE).add(block.asItem());
+            getOrCreateTagBuilder(ItemTags.VANISHING_ENCHANTABLE).add(block.asItem());
         });
     }
 }

@@ -14,8 +14,11 @@ It is currently heavily WIP, and as such, many features are not yet implemented.
 ![Iron Door Variants](./src/main/resources/assets/epitheca/doors_8x1.png)
 - [X] Bar Variants (Cobblestone, Mossy Cobblestone, Cobbled Deepslate, Smooth Stone, Gold, Diamond, Emerald)
 ![Bar Variants](./src/main/resources/assets/epitheca/bars_8x1.png)
+- [X] Carved Pumpkin / Jack O' Lantern Variants  
+![Pumpkin Variants](./src/main/resources/assets/epitheca/pumpkins_5x2.png)
+- [ ] Make a "recrafter" block that can convert minecraft blocks to epithica variants and vice versa  
+- [ ] More Pumpkin / Jack O' Lantern Variants  
 - [ ] Froglight Variants  
-- [ ] Pumpkin / Carved Pumpkin / Jack O' Lantern Variants  
 - [ ] Barrel Variants  
 - [ ] Moss Variants  
 - [ ] Replace natural generation of some blocks with a chance of being a variant? This one is a stretch

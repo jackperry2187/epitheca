@@ -21,6 +21,7 @@ import java.util.concurrent.CompletableFuture;
 
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
 import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
+import static jackperry2187.epitheca.init.block.Pumpkins.*;
 import static jackperry2187.epitheca.init.block.Shroomlight.SHROOMLIGHTS;
 import static jackperry2187.epitheca.init.item.Bars.*;
 import static jackperry2187.epitheca.init.item.Defaults.DYES;
@@ -38,6 +39,7 @@ public class EpithecaRecipeProvider extends FabricRecipeProvider {
         generateMagmas(exporter);
         generateDoors(exporter);
         generateBars(exporter);
+        generatePumpkins(exporter);
         Epitheca.LOGGER.info("Recipes generated successfully!");
     }
 
@@ -249,5 +251,45 @@ public class EpithecaRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(DIAMOND_BARS_ITEM), conditionsFromItem(DIAMOND_BARS_ITEM))
                 .criterion(hasItem(Items.EMERALD), conditionsFromItem(Items.EMERALD))
                 .offerTo(exporter, "emerald_bars_smithing");
+    }
+
+    public void generatePumpkins(RecipeExporter exporter) {
+        // Generate recipes for each Pumpkin variant
+        for (Block block : UNLIT_PUMPKINS) {
+            ShapelessRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, block.asItem())
+                    .input(Items.CARVED_PUMPKIN)
+                    .input(Items.IRON_NUGGET, 1)
+                    .group("pumpkin")
+                    .criterion(hasItem(Items.IRON_NUGGET), conditionsFromItem(Items.IRON_NUGGET))
+                    .criterion("has_pumpkin", conditionsFromTag(TagInit.PUMPKIN_ITEM))
+                    .offerTo(exporter);
+            // Epitheca.LOGGER.info("Added recipe to iron ingot to {}", block.getTranslationKey());
+        }
+
+        for (Block block : LIT_PUMPKINS) {
+            // translation key is formatted as block.epitheca.pumpkin_<expression>[_lit]
+            String translationKey = block.getTranslationKey();
+            // get just <expression> from the translation key
+            String expression = translationKey.substring(translationKey.indexOf('_') + 1);
+            String expressionWithoutLit = expression.substring(0, expression.lastIndexOf('_'));
+
+            // get the corresponding unlit pumpkin
+            Block unlitPumpkin = PUMPKINS.stream().filter(pumpkin -> pumpkin.getTranslationKey().contains(expressionWithoutLit)).findFirst().orElse(null);
+            if (unlitPumpkin == null) {
+                Epitheca.LOGGER.error("Could not find unlit pumpkin for {}", block.getTranslationKey());
+                continue;
+            }
+            // Epitheca.LOGGER.info("Found unlit pumpkin for {}: {}", block.getTranslationKey(), unlitPumpkin.getTranslationKey());
+
+            ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, block.asItem())
+                    .input('P', unlitPumpkin)
+                    .input('T', Items.TORCH)
+                    .pattern("P")
+                    .pattern("T")
+                    .group("pumpkin")
+                    .criterion(hasItem(Items.TORCH), conditionsFromItem(Items.TORCH))
+                    .criterion("has_pumpkin", conditionsFromTag(TagInit.PUMPKIN_ITEM))
+                    .offerTo(exporter);
+        }
     }
 }

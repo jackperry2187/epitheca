@@ -34,6 +34,7 @@ public class Epitheca implements ModInitializer {
 		initializeMagmaCreativeTabEntries();
 		initializeDoorCreativeTabEntries();
 		initializeBarsCreativeTabEntries();
+		initializePumpkinsCreativeTabEntries();
 
 		LOGGER.info("Initialized Successfully!");
 	}
@@ -116,6 +117,21 @@ public class Epitheca implements ModInitializer {
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
 			entries.addBefore(original_bars, BEFORE_BARS);
 			entries.addAfter(original_bars, AFTER_BARS);
+		});
+	}
+
+	public void initializePumpkinsCreativeTabEntries() {
+		// Add pumpkins to creative tabs
+		ItemStack original_pumpkin = CARVED_PUMPKIN.asItem().getDefaultStack();
+		List<ItemStack> PUMPKINS = blocksToItemStacks(Pumpkins.UNLIT_PUMPKINS);
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
+			entries.addAfter(original_pumpkin, PUMPKINS);
+		});
+
+		ItemStack original_jack_o_lantern = JACK_O_LANTERN.asItem().getDefaultStack();
+		List<ItemStack> LIT_PUMPKINS = blocksToItemStacks(Pumpkins.LIT_PUMPKINS);
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
+			entries.addAfter(original_jack_o_lantern, LIT_PUMPKINS);
 		});
 	}
 

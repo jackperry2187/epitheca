@@ -14,6 +14,7 @@ import static jackperry2187.epitheca.init.block.Bars.BARS;
 import static jackperry2187.epitheca.init.block.Doors.DOORS;
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
 import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
+import static jackperry2187.epitheca.init.block.Pumpkins.PUMPKINS;
 import static jackperry2187.epitheca.init.block.Shroomlight.SHROOMLIGHTS;
 
 public class EpithecaBlockTagProvider extends FabricTagProvider.BlockTagProvider {
@@ -29,6 +30,7 @@ public class EpithecaBlockTagProvider extends FabricTagProvider.BlockTagProvider
         configureMagmas();
         configureDoors();
         configureBars();
+        configurePumpkins();
         Epitheca.LOGGER.info("Block tags generated successfully!");
     }
 
@@ -77,6 +79,16 @@ public class EpithecaBlockTagProvider extends FabricTagProvider.BlockTagProvider
         BARS.forEach(block -> {
             getOrCreateTagBuilder(BlockTags.DRAGON_IMMUNE).add(block);
             getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(block);
+        });
+    }
+
+    public void configurePumpkins() {
+        // Properly add tags to Pumpkins
+        PUMPKINS.forEach(block -> {
+            getOrCreateTagBuilder(TagInit.PUMPKIN).add(block);
+            getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(block);
+            getOrCreateTagBuilder(BlockTags.SWORD_EFFICIENT).add(block);
+            getOrCreateTagBuilder(BlockTags.ENDERMAN_HOLDABLE).add(block);
         });
     }
 }
