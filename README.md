@@ -2,6 +2,7 @@
 
 **Epitheca** is a mod that adds a variety of new craftable variants of existing blocks and items.  
 It is currently heavily WIP, and as such, many features are not yet implemented.  
+Available for download on [Curseforge](https://www.curseforge.com/minecraft/mc-mods/epitheca) and [Modrinth](https://modrinth.com/mod/epitheca). Thank you for over 150 downloads!   
 
 ## Features  
 - [x] Shroomlight Variants  
