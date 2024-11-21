@@ -1,6 +1,7 @@
 package jackperry2187.epitheca.data.generator;
 
 import jackperry2187.epitheca.Epitheca;
+import jackperry2187.epitheca.data.generator.util.RecrafterTagProvider;
 import jackperry2187.epitheca.init.TagInit;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -29,6 +30,7 @@ public class EpithecaItemTagProvider extends FabricTagProvider.ItemTagProvider {
         configureMagmas();
         configureDoors();
         configurePumpkins();
+        RecrafterTagProvider.configure(getOrCreateTagBuilder(TagInit.RECRAFTER_INPUT));
         Epitheca.LOGGER.info("Item tags generated successfully!");
     }
 

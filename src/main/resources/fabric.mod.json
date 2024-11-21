@@ -25,13 +25,6 @@
 			"jackperry2187.epitheca.EpithecaDataGenerator"
 		]
 	},
-	"mixins": [
-		"epitheca.mixins.json",
-		{
-			"config": "epitheca.client.mixins.json",
-			"environment": "client"
-		}
-	],
 	"depends": {
 		"fabricloader": ">=0.16.5",
 		"minecraft": "~1.21.1",

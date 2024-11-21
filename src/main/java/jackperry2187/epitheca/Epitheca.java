@@ -2,6 +2,7 @@ package jackperry2187.epitheca;
 
 import jackperry2187.epitheca.init.BlockInit;
 import jackperry2187.epitheca.init.ItemInit;
+import jackperry2187.epitheca.init.ScreenInit;
 import jackperry2187.epitheca.init.block.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -27,6 +28,7 @@ public class Epitheca implements ModInitializer {
 		// Load init classes
 		ItemInit.load();
 		BlockInit.load();
+		ScreenInit.load();
 
 		// Load creative tab entries
 		initializeShroomlightCreativeTabEntries();
@@ -35,6 +37,7 @@ public class Epitheca implements ModInitializer {
 		initializeDoorCreativeTabEntries();
 		initializeBarsCreativeTabEntries();
 		initializePumpkinsCreativeTabEntries();
+		initializeRecrafterCreativeTabEntries();
 
 		LOGGER.info("Initialized Successfully!");
 	}
@@ -132,6 +135,14 @@ public class Epitheca implements ModInitializer {
 		List<ItemStack> LIT_PUMPKINS = blocksToItemStacks(Pumpkins.LIT_PUMPKINS);
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
 			entries.addAfter(original_jack_o_lantern, LIT_PUMPKINS);
+		});
+	}
+
+	public void initializeRecrafterCreativeTabEntries() {
+		// Add recrafter to creative tabs
+		ItemStack original_recrafter = CRAFTING_TABLE.asItem().getDefaultStack();
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
+			entries.addAfter(original_recrafter, blocksToItemStacks(List.of(Recrafter.RECRAFTER)));
 		});
 	}
 

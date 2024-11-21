@@ -5,7 +5,6 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
-import static jackperry2187.epitheca.init.item.Bars.loadBarItems;
 import static jackperry2187.epitheca.init.item.Doors.loadDoorItems;
 
 public class ItemInit {
@@ -17,6 +16,5 @@ public class ItemInit {
 
     public static void load() {
         loadDoorItems();
-        loadBarItems();
     }
 }

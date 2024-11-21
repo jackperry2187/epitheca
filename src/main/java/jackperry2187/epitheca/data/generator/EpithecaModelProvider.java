@@ -4,9 +4,7 @@ import jackperry2187.epitheca.Epitheca;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Blocks;
-import net.minecraft.data.client.BlockStateModelGenerator;
-import net.minecraft.data.client.ItemModelGenerator;
-import net.minecraft.data.client.TextureMap;
+import net.minecraft.data.client.*;
 
 import static jackperry2187.epitheca.init.BarsInit.registerBars;
 import static jackperry2187.epitheca.init.block.Bars.BARS;
@@ -14,6 +12,7 @@ import static jackperry2187.epitheca.init.block.Doors.DOORS;
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
 import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
 import static jackperry2187.epitheca.init.block.Pumpkins.PUMPKINS;
+import static jackperry2187.epitheca.init.block.Recrafter.RECRAFTER;
 import static jackperry2187.epitheca.init.block.Shroomlight.SHROOMLIGHTS;
 
 public class EpithecaModelProvider extends FabricModelProvider {
@@ -39,6 +38,7 @@ public class EpithecaModelProvider extends FabricModelProvider {
         PUMPKINS.forEach(block -> {
             blockStateModelGenerator.registerNorthDefaultHorizontalRotatable(block, pumpkinMap);
         });
+        blockStateModelGenerator.registerSingleton(RECRAFTER, TexturedModel.CUBE_BOTTOM_TOP);
     }
 
     @Override

@@ -12,6 +12,7 @@ import static jackperry2187.epitheca.init.block.Doors.DOORS;
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
 import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
 import static jackperry2187.epitheca.init.block.Pumpkins.PUMPKINS;
+import static jackperry2187.epitheca.init.block.Recrafter.RECRAFTER;
 import static jackperry2187.epitheca.init.block.Shroomlight.SHROOMLIGHTS;
 
 public class EpithecaEnLanguageProvider extends FabricLanguageProvider {
@@ -28,6 +29,7 @@ public class EpithecaEnLanguageProvider extends FabricLanguageProvider {
         generateDoorTranslations(translationBuilder);
         generateBarTranslations(translationBuilder);
         generatePumpkinTranslations(translationBuilder);
+        translationBuilder.add(RECRAFTER.getTranslationKey(), "Recrafter");
         Epitheca.LOGGER.info("Translations generated successfully!");
     }
 

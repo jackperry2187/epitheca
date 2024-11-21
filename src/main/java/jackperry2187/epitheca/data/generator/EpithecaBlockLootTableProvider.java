@@ -12,6 +12,7 @@ import static jackperry2187.epitheca.init.block.Doors.DOORS;
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
 import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
 import static jackperry2187.epitheca.init.block.Pumpkins.PUMPKINS;
+import static jackperry2187.epitheca.init.block.Recrafter.RECRAFTER;
 import static jackperry2187.epitheca.init.block.Shroomlight.SHROOMLIGHTS;
 
 public class EpithecaBlockLootTableProvider extends FabricBlockLootTableProvider {
@@ -29,6 +30,7 @@ public class EpithecaBlockLootTableProvider extends FabricBlockLootTableProvider
         generateDoors();
         generateBars();
         generatePumpkins();
+        generateRecrafter();
         Epitheca.LOGGER.info("Block loot tables generated successfully!");
     }
 
@@ -78,5 +80,10 @@ public class EpithecaBlockLootTableProvider extends FabricBlockLootTableProvider
             addDrop(block);
             // Epitheca.LOGGER.info("Added loot table for {}", block.getTranslationKey());
         });
+    }
+
+    private void generateRecrafter() {
+        // Generate loot tables for Recrafter
+        addDrop(RECRAFTER);
     }
 }
