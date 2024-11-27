@@ -18,10 +18,12 @@ To get started with the mod, simply make the Recrafter and use it to convert blo
 ![Magma Variants](./src/main/resources/assets/epitheca/magma.gif)
 - [X] Iron Door Variants (Cobblestone, Mossy Cobblestone, Cobbled Deepslate, Smooth Stone, Gold, Diamond, Emerald)  
 ![Iron Door Variants](./src/main/resources/assets/epitheca/doors_8x1.png)
-- [X] Bar Variants (Cobblestone, Mossy Cobblestone, Cobbled Deepslate, Smooth Stone, Gold, Diamond, Emerald)
+- [X] Bar Variants (Cobblestone, Mossy Cobblestone, Cobbled Deepslate, Smooth Stone, Gold, Diamond, Emerald)  
 ![Bar Variants](./src/main/resources/assets/epitheca/bars_8x1.png)
 - [X] Carved Pumpkin / Jack O' Lantern Variants  
 ![Pumpkin Variants](./src/main/resources/assets/epitheca/pumpkins_5x2.png)
+- [X] Bookshelf Variants  
+![Bookshelf Variants](./src/main/resources/assets/epitheca/bookshelves_5x2.png)
 - [X] Make a "recrafter" block that can convert minecraft blocks to Epitheca variants and vice versa 
 ![Recrafter](./src/main/resources/assets/epitheca/recrafter_512_inner.png)
 - [ ] Real recrafter recipes as opposed to whatever I'm doing right now  

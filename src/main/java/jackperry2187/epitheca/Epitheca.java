@@ -38,11 +38,12 @@ public class Epitheca implements ModInitializer {
 		initializeBarsCreativeTabEntries();
 		initializePumpkinsCreativeTabEntries();
 		initializeRecrafterCreativeTabEntries();
+		initializeBookshelvesCreativeTabEntries();
 
 		LOGGER.info("Initialized Successfully!");
 	}
 
-	public void initializeShroomlightCreativeTabEntries() {
+	private void initializeShroomlightCreativeTabEntries() {
 		// Add shroomlights to creative tabs
 		ItemStack original_shroomlight = SHROOMLIGHT.asItem().getDefaultStack();
 		List<ItemStack> SHROOMLIGHTS = blocksToItemStacks(Shroomlight.SHROOMLIGHTS);
@@ -59,7 +60,7 @@ public class Epitheca implements ModInitializer {
 		});
 	}
 
-	public void initializeGlowstoneCreativeTabEntries() {
+	private void initializeGlowstoneCreativeTabEntries() {
 		// Add glowstones to creative tabs
 		ItemStack original_glowstone = GLOWSTONE.asItem().getDefaultStack();
 		List<ItemStack> GLOWSTONES = blocksToItemStacks(Glowstone.GLOWSTONES);
@@ -76,7 +77,7 @@ public class Epitheca implements ModInitializer {
 		});
 	}
 
-	public void initializeMagmaCreativeTabEntries() {
+	private void initializeMagmaCreativeTabEntries() {
 		// Add magmas to creative tabs
 		ItemStack original_magma = MAGMA_BLOCK.asItem().getDefaultStack();
 		List<ItemStack> MAGMAS = blocksToItemStacks(Magma.MAGMAS);
@@ -93,7 +94,7 @@ public class Epitheca implements ModInitializer {
 		});
 	}
 
-	public void initializeDoorCreativeTabEntries() {
+	private void initializeDoorCreativeTabEntries() {
 		// Add doors to creative tabs
 		ItemStack original_door = IRON_DOOR.asItem().getDefaultStack();
 		List<ItemStack> DOORS = blocksToItemStacks(Doors.DOORS);
@@ -110,7 +111,7 @@ public class Epitheca implements ModInitializer {
 		});
 	}
 
-	public void initializeBarsCreativeTabEntries() {
+	private void initializeBarsCreativeTabEntries() {
 		// Add bars to creative tabs
 		ItemStack original_bars = IRON_BARS.asItem().getDefaultStack();
 		List<ItemStack> BARS = blocksToItemStacks(Bars.BARS);
@@ -123,7 +124,7 @@ public class Epitheca implements ModInitializer {
 		});
 	}
 
-	public void initializePumpkinsCreativeTabEntries() {
+	private void initializePumpkinsCreativeTabEntries() {
 		// Add pumpkins to creative tabs
 		ItemStack original_pumpkin = CARVED_PUMPKIN.asItem().getDefaultStack();
 		List<ItemStack> PUMPKINS = blocksToItemStacks(Pumpkins.UNLIT_PUMPKINS);
@@ -138,7 +139,7 @@ public class Epitheca implements ModInitializer {
 		});
 	}
 
-	public void initializeRecrafterCreativeTabEntries() {
+	private void initializeRecrafterCreativeTabEntries() {
 		// Add recrafter to creative tabs
 		ItemStack original_recrafter = CRAFTING_TABLE.asItem().getDefaultStack();
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
@@ -146,11 +147,24 @@ public class Epitheca implements ModInitializer {
 		});
 	}
 
+	private void initializeBookshelvesCreativeTabEntries() {
+		// Add bookshelves to creative tabs
+		ItemStack original_bookshelf = BOOKSHELF.asItem().getDefaultStack();
+		List<ItemStack> BOOKSHELVES = blocksToItemStacks(Bookshelf.BOOKSHELVES);
+		List<ItemStack> BEFORE_BOOKSHELVES = BOOKSHELVES.subList(0, 8);
+		List<ItemStack> AFTER_BOOKSHELVES = BOOKSHELVES.subList(8, BOOKSHELVES.size());
+
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
+			entries.addBefore(original_bookshelf, BEFORE_BOOKSHELVES);
+			entries.addAfter(original_bookshelf, AFTER_BOOKSHELVES);
+		});
+	}
+
 	public static Identifier id(String path) {
 		return Identifier.of(MOD_ID, path);
 	}
 
-	public static List<ItemStack> blocksToItemStacks(List<Block> blocks) {
+	private static List<ItemStack> blocksToItemStacks(List<Block> blocks) {
 		var x = blocks.stream().map(block -> block.asItem().getDefaultStack());
 		return x.toList();
 	}

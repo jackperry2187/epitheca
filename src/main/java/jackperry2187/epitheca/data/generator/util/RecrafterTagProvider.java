@@ -6,8 +6,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 
-
 import static jackperry2187.epitheca.init.block.Bars.BARS;
+import static jackperry2187.epitheca.init.block.Bookshelf.BOOKSHELVES;
 import static jackperry2187.epitheca.init.block.Doors.DOORS;
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
 import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
@@ -25,6 +25,7 @@ public class RecrafterTagProvider {
         configureBars(tagBuilder);
         configurePumpkins(tagBuilder);
         configureRecrafter(tagBuilder);
+        configureBookshelves(tagBuilder);
         Epitheca.LOGGER.info("Recrafter input tags generated successfully!");
     }
 
@@ -74,5 +75,12 @@ public class RecrafterTagProvider {
     private static void configureRecrafter(FabricTagProvider<Item>.FabricTagBuilder tagBuilder) {
         tagBuilder.add(RECRAFTER.asItem());
         tagBuilder.add(Items.CRAFTING_TABLE);
+    }
+
+    private static void configureBookshelves(FabricTagProvider<Item>.FabricTagBuilder tagBuilder) {
+        BOOKSHELVES.forEach(block -> {
+            tagBuilder.add(block.asItem());
+        });
+        tagBuilder.add(Blocks.BOOKSHELF.asItem());
     }
 }

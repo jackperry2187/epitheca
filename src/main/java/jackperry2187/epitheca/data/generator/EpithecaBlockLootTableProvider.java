@@ -8,6 +8,7 @@ import net.minecraft.registry.RegistryWrapper;
 import java.util.concurrent.CompletableFuture;
 
 import static jackperry2187.epitheca.init.block.Bars.BARS;
+import static jackperry2187.epitheca.init.block.Bookshelf.BOOKSHELVES;
 import static jackperry2187.epitheca.init.block.Doors.DOORS;
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
 import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
@@ -31,10 +32,11 @@ public class EpithecaBlockLootTableProvider extends FabricBlockLootTableProvider
         generateBars();
         generatePumpkins();
         generateRecrafter();
+        generateBookshelves();
         Epitheca.LOGGER.info("Block loot tables generated successfully!");
     }
 
-    public void generateShroomlights() {
+    private void generateShroomlights() {
         // Generate loot tables for each Shroomlight variant
         SHROOMLIGHTS.forEach(block -> {
             addDrop(block);
@@ -42,7 +44,7 @@ public class EpithecaBlockLootTableProvider extends FabricBlockLootTableProvider
         });
     }
 
-    public void generateGlowstones() {
+    private void generateGlowstones() {
         // Generate loot tables for each Glowstone variant
          GLOWSTONES.forEach(block -> {
              addDrop(block);
@@ -50,7 +52,7 @@ public class EpithecaBlockLootTableProvider extends FabricBlockLootTableProvider
          });
     }
 
-    public void generateMagmas() {
+    private void generateMagmas() {
         // Generate loot tables for each Magma variant
         MAGMAS.forEach(block -> {
             addDrop(block);
@@ -58,7 +60,7 @@ public class EpithecaBlockLootTableProvider extends FabricBlockLootTableProvider
         });
     }
 
-    public void generateDoors() {
+    private void generateDoors() {
         // Generate loot tables for each Door variant
         DOORS.forEach(block -> {
             doorDrops(block);
@@ -66,7 +68,7 @@ public class EpithecaBlockLootTableProvider extends FabricBlockLootTableProvider
         });
     }
 
-    public void generateBars() {
+    private void generateBars() {
         // Generate loot tables for each Bars variant
         BARS.forEach(block -> {
             addDrop(block);
@@ -74,7 +76,7 @@ public class EpithecaBlockLootTableProvider extends FabricBlockLootTableProvider
         });
     }
 
-    public void generatePumpkins() {
+    private void generatePumpkins() {
         // Generate loot tables for each Pumpkin variant
         PUMPKINS.forEach(block -> {
             addDrop(block);
@@ -85,5 +87,13 @@ public class EpithecaBlockLootTableProvider extends FabricBlockLootTableProvider
     private void generateRecrafter() {
         // Generate loot tables for Recrafter
         addDrop(RECRAFTER);
+    }
+
+    private void generateBookshelves() {
+        // Generate loot tables for each Bookshelf variant
+        BOOKSHELVES.forEach(block -> {
+            addDrop(block);
+            // Epitheca.LOGGER.info("Added loot table for {}", block.getTranslationKey());
+        });
     }
 }

@@ -8,6 +8,7 @@ import net.minecraft.registry.RegistryWrapper;
 import java.util.concurrent.CompletableFuture;
 
 import static jackperry2187.epitheca.init.block.Bars.BARS;
+import static jackperry2187.epitheca.init.block.Bookshelf.BOOKSHELVES;
 import static jackperry2187.epitheca.init.block.Doors.DOORS;
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
 import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
@@ -30,6 +31,7 @@ public class EpithecaEnLanguageProvider extends FabricLanguageProvider {
         generateBarTranslations(translationBuilder);
         generatePumpkinTranslations(translationBuilder);
         translationBuilder.add(RECRAFTER.getTranslationKey(), "Recrafter");
+        generateBookshelfTranslations(translationBuilder);
         Epitheca.LOGGER.info("Translations generated successfully!");
     }
 
@@ -96,6 +98,17 @@ public class EpithecaEnLanguageProvider extends FabricLanguageProvider {
             String casedExpression = Epitheca.capsCase(translationKey.substring(translationKey.indexOf('_') + 1), "_");
             translationBuilder.add(translationKey, casedExpression + " Pumpkin");
             // Epitheca.LOGGER.info("Added translation for {} to {}", translationKey, casedExpression);
+        });
+    }
+
+    public void generateBookshelfTranslations(TranslationBuilder translationBuilder) {
+        // Generate translations for each Bookshelf variant
+        BOOKSHELVES.forEach(block -> {
+            // translation key is formatted as block.epitheca.<material>_bookshelf
+            String translationKey = block.getTranslationKey();
+            String casedMaterial = Epitheca.capsCase(translationKey.substring(translationKey.lastIndexOf('.') + 1), "_");
+            translationBuilder.add(translationKey, casedMaterial);
+            // Epitheca.LOGGER.info("Added translation for {} to {}", translationKey, casedMaterial);
         });
     }
 }

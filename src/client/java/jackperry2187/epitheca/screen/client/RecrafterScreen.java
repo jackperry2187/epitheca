@@ -22,7 +22,7 @@ import java.util.List;
 import static jackperry2187.epitheca.init.TagInit.RECRAFTER_INPUT;
 
 @Environment(EnvType.CLIENT)
-public class RecrafterScreen extends HandledScreen<RecrafterScreenHandler>  implements ScreenHandlerProvider<RecrafterScreenHandler> {
+public class RecrafterScreen extends HandledScreen<RecrafterScreenHandler> implements ScreenHandlerProvider<RecrafterScreenHandler> {
     private final Identifier BACKGROUND_TEXTURE = Background.BACKGROUND_TEXTURE;
     private final int backgroundHeight = Background.H;
     private final int backgroundWidth = Background.W;

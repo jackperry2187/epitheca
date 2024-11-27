@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import static jackperry2187.epitheca.init.block.Bars.BARS;
+import static jackperry2187.epitheca.init.block.Bookshelf.BOOKSHELVES;
 import static jackperry2187.epitheca.init.block.Doors.DOORS;
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
 import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
@@ -31,6 +32,7 @@ public class RecrafterProvider {
         configureBars();
         configurePumpkins();
         configureRecrafter();
+        configureBookshelves();
     }
 
     private static void configureShroomlights() {
@@ -117,6 +119,16 @@ public class RecrafterProvider {
         craftOutput.add(RECRAFTER);
 
         addOutputs(craftInput, craftOutput);
+    }
+
+    private static void configureBookshelves() {
+        List<String> inputs = new ArrayList<>(BOOKSHELVES.stream().map(block -> block.getTranslationKey()).toList());
+        inputs.add(Blocks.BOOKSHELF.getTranslationKey());
+
+        List<Block> outputs = new ArrayList<>(BOOKSHELVES);
+        outputs.add(Blocks.BOOKSHELF);
+
+        addOutputs(inputs, outputs);
     }
 
     private static void addOutputs(List<String> inputs, List<Block> outputs) {

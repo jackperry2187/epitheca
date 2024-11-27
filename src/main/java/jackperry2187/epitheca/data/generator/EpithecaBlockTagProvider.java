@@ -11,6 +11,7 @@ import net.minecraft.registry.tag.BlockTags;
 import java.util.concurrent.CompletableFuture;
 
 import static jackperry2187.epitheca.init.block.Bars.BARS;
+import static jackperry2187.epitheca.init.block.Bookshelf.BOOKSHELVES;
 import static jackperry2187.epitheca.init.block.Doors.DOORS;
 import static jackperry2187.epitheca.init.block.Glowstone.GLOWSTONES;
 import static jackperry2187.epitheca.init.block.Magma.MAGMAS;
@@ -33,10 +34,11 @@ public class EpithecaBlockTagProvider extends FabricTagProvider.BlockTagProvider
         configureBars();
         configurePumpkins();
         configureRecrafter();
+        configureBookshelves();
         Epitheca.LOGGER.info("Block tags generated successfully!");
     }
 
-    public void configureShroomlights() {
+    private void configureShroomlights() {
         // Properly add tags to SHROOMLIGHTS
         SHROOMLIGHTS.forEach(block -> {
             getOrCreateTagBuilder(TagInit.SHROOMLIGHT).add(block);
@@ -46,7 +48,7 @@ public class EpithecaBlockTagProvider extends FabricTagProvider.BlockTagProvider
         getOrCreateTagBuilder(TagInit.SHROOMLIGHT).add(Blocks.SHROOMLIGHT);
     }
 
-    public void configureGlowstones() {
+    private void configureGlowstones() {
         // Properly add tags to GLOWSTONES
          GLOWSTONES.forEach(block -> {
              getOrCreateTagBuilder(TagInit.GLOWSTONE).add(block);
@@ -55,7 +57,7 @@ public class EpithecaBlockTagProvider extends FabricTagProvider.BlockTagProvider
          getOrCreateTagBuilder(TagInit.GLOWSTONE).add(Blocks.GLOWSTONE);
     }
 
-    public void configureMagmas() {
+    private void configureMagmas() {
         // Properly add tags to MAGMAS
         MAGMAS.forEach(block -> {
             getOrCreateTagBuilder(TagInit.MAGMA).add(block);
@@ -68,7 +70,7 @@ public class EpithecaBlockTagProvider extends FabricTagProvider.BlockTagProvider
         getOrCreateTagBuilder(TagInit.MAGMA).add(Blocks.MAGMA_BLOCK);
     }
 
-    public void configureDoors() {
+    private void configureDoors() {
         // Properly add tags to DOORS
         DOORS.forEach(block -> {
             getOrCreateTagBuilder(BlockTags.DOORS).add(block);
@@ -76,7 +78,7 @@ public class EpithecaBlockTagProvider extends FabricTagProvider.BlockTagProvider
         });
     }
 
-    public void configureBars() {
+    private void configureBars() {
         // Properly add tags to BARS
         BARS.forEach(block -> {
             getOrCreateTagBuilder(BlockTags.DRAGON_IMMUNE).add(block);
@@ -84,7 +86,7 @@ public class EpithecaBlockTagProvider extends FabricTagProvider.BlockTagProvider
         });
     }
 
-    public void configurePumpkins() {
+    private void configurePumpkins() {
         // Properly add tags to Pumpkins
         PUMPKINS.forEach(block -> {
             getOrCreateTagBuilder(TagInit.PUMPKIN).add(block);
@@ -94,7 +96,15 @@ public class EpithecaBlockTagProvider extends FabricTagProvider.BlockTagProvider
         });
     }
 
-    public void configureRecrafter() {
+    private void configureRecrafter() {
         getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(RECRAFTER);
+    }
+
+    private void configureBookshelves() {
+        // Properly add tags to Bookshelves
+        BOOKSHELVES.forEach(block -> {
+            getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(block);
+            getOrCreateTagBuilder(BlockTags.ENCHANTMENT_POWER_PROVIDER).add(block);
+        });
     }
 }
